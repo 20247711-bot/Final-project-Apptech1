@@ -1,32 +1,70 @@
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
 const Layout = () => {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("loggedIn");
+    navigate("/login");
+  };
+
   return (
-    <div className="d-flex" style={{ minHeight: "100vh" }}>
+    <div className="d-flex" >
       
-      <div className="bg-dark text-white p-3" style={{ width: "250px" }}>
-        <h4 className="mb-4">Admin Panel</h4>
+      <div
+        className="bg-dark text-white p-4"
+        style={{ width: "250px", minHeight: "100vh" }}
+      >
+        <h3 className="fw-bold mb-4">
+          IMS
+        </h3>
 
-        <ul className="nav flex-column">
-          <li className="nav-item mb-2">
-            <Link to="/" className="nav-link text-white">Dashboard</Link>
-          </li>
+        <div className="d-flex flex-column gap-2">
 
-          <li className="nav-item mb-2">
-            <Link to="/warehouses" className="nav-link text-white">Warehouses</Link>
-          </li>
+          <NavLink
+            to="/"
+            end
+            className="text-decoration-none text-light p-2 rounded sidebar-link"
+          >
+            <i className="bi bi-speedometer2 me-2"></i>
+            Dashboard
+          </NavLink>
 
-          <li className="nav-item mb-2">
-            <Link to="/inventory" className="nav-link text-white">Inventory</Link>
-          </li>
+          <NavLink
+            to="/warehouses"
+            className="text-decoration-none text-light p-2 rounded sidebar-link"
+          >
+            <i className="bi bi-building me-2"></i>
+            Warehouses
+          </NavLink>
 
-          <li className="nav-item">
-            <Link to="/admins" className="nav-link text-white">Admins</Link>
-          </li>
-        </ul>
+          <NavLink
+            to="/inventory"
+            className="text-decoration-none text-light p-2 rounded sidebar-link"
+          >
+            <i className="bi bi-box-seam me-2"></i>
+            Inventory
+          </NavLink>
+
+          <NavLink
+            to="/admins"
+            className="text-decoration-none text-light p-2 rounded sidebar-link"
+          >
+            <i className="bi bi-people me-2"></i>
+            Admins
+          </NavLink>
+
+          <button
+            className="btn btn-danger mt-4"
+            onClick={logout}
+          >
+            Logout
+          </button>
+
+        </div>
       </div>
       
-      <div className="flex-grow-1 p-4 bg-light">
+      <div className="flex-grow-1 p-4">
         <Outlet />
       </div>
     </div>

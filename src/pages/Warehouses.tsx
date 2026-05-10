@@ -1,12 +1,7 @@
-import WarehouseManager from "../components/Warehouse";
+import WarehouseManager from "../components/WarehouseManager";
 
 const Warehouses = () => {
-  return (
-    <div className="container mt-4">
-      <h2>Warehouses</h2>
-      <WarehouseManager />
-    </div>
-  );
+  return <WarehouseManager />;
 };
 
 export default Warehouses;
